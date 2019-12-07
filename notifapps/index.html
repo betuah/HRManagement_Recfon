@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Keep on the right path, May Allah blessing you.</h1>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket  = io.connect('http://localhost:8080');
+
+            socket.emit('notif', { notif: 1});
+
+            socket.on('res_notif', function (data) {
+                console.log(data);
+                // socket.emit('notif', { from: '13', msg: 'data' });
+            });
+
+            socket.on('res_notif', function (data) {
+                var this_user = '5';
+                // console.log(data);
+                if(data.from === this_user) {
+                    console.log(data);
+                } else {
+                    console.log('some one send message but not for you');
+                }
+                // console.log('I received a private message by ', from, ' saying ', msg);
+            });
+
+        </script>
+    </body>
+</html>
+
